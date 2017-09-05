@@ -7,15 +7,26 @@ var module = angular.module('serviceMod', []);
     }
 })*/
 
+
 module.factory('testProvider', function(){
     console.log("test Factory execution time");
-    return "Test Value";
-})
+    return new function(){
+        this.getValue = function(){
+            return "testObj return";
+        }
+    };
+});
 
+/*module.service('testProvider', function(){
+    console.log('service declared');
+    this.getValue = function(){
+        return "testObj return";
+    };
+});*/
 module.controller('serviceCntl', function(testProvider){
-    console.log("test provider = "+ testProvider);
+    console.log("test provider = "+ testProvider.getValue());
 });
 
 module.controller('serviceCntl2', function(testProvider){
-    console.log("test provider2 = "+ testProvider);
+    console.log("test provider2 = "+ testProvider.getValue());
 });
