@@ -1,6 +1,6 @@
 var module = angular.module('serviceMod', []);
 
-module.provider('testProvider', function(){
+/*module.provider('testProvider', function(){
     this.value = "My value";
     this.setValue = function(newVal){
         this.value = newVal;
@@ -9,17 +9,18 @@ module.provider('testProvider', function(){
     this.$get = function(){
         return this.value;
     }
-})
+})*/
 
 
-/*module.factory('testProvider', function(){
+function Person(name){
+    this.name = name;
+}
+
+module.factory('testProvider', function(){
     console.log("test Factory execution time");
-    return new function(){
-        this.getValue = function(){
-            return "testObj return";
-        }
-    };
-});*/
+    //use constructor argument for setting up value which cannot be done at services
+    return new Person('mostafa');
+});
 
 /*module.service('testProvider', function(){
     console.log('service declared');
@@ -28,14 +29,15 @@ module.provider('testProvider', function(){
     };
 });*/
 module.controller('serviceCntl', function(testProvider){
-    console.log("test provider = "+ testProvider);
+    console.log("test provider = "+ testProvider.name);
 });
 
 module.controller('serviceCntl2', function(testProvider){
-    console.log("test provider2 = "+ testProvider);
+    console.log("test provider2 = "+ testProvider.name);
 });
 
 // provider can be accessed in the configuration phase
+/*
 module.config(function(testProviderProvider){
    testProviderProvider.setValue('new value');
-});
+});*/
