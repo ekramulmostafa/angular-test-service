@@ -12,7 +12,7 @@ var module = angular.module('serviceMod', []);
 })*/
 
 
-function Person(name){
+/*function Person(name){
     this.name = name;
 }
 
@@ -20,7 +20,7 @@ module.factory('testProvider', function(){
     console.log("test Factory execution time");
     //use constructor argument for setting up value which cannot be done at services
     return new Person('mostafa');
-});
+});*/
 
 /*module.service('testProvider', function(){
     console.log('service declared');
@@ -28,6 +28,13 @@ module.factory('testProvider', function(){
         return "testObj return";
     };
 });*/
+
+// just to returning a litaral value dont use factory, use value
+module.value('testProvider', 'print me value');
+
+// constant can be set for once after initialization and can be accessed from the config phase
+module.constant('testProvider', 'print me constant');
+
 module.controller('serviceCntl', function(testProvider){
     console.log("test provider = "+ testProvider.name);
 });
